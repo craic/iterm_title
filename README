@@ -1,8 +1,6 @@
 iterm_title is a bash shell script that sets the Name for the current tab in iTerm2 (http://www.iterm2.com) on Mac OS X
 
-
 It uses Applescript called from the UNIX command line
-
 
 iTerm2 (http://www.iterm2.com) by George Nachman is an excellent terminal emulator for Mac OS X that is highly 
 configurable. I it prefer over the system Terminal application.
@@ -12,7 +10,7 @@ much easier to identify the correct tabs when you have several of them open in a
 
 To Install, copy it to /usr/local/bin and 'chmod a+x iterm_title' to make it executable
 
-To Run type the command followed byt the title
+To Run type the command followed by the title
 
 $ iterm_title 'Your title'
 
@@ -22,10 +20,8 @@ Note that the tab width does not expand to fit your text. About 25 characters is
 
 This script could be easily modified to change session colors, etc from the command line - take a look at the iTerm2 docs.
 
-
 By default iTerm will show the current foreground process, such as bash, in the tab title. I find this distracting.
 You can prevent it by going to Preferences -> Appearance and unchecking 'Show current job name' in the 'Window and Tab Titles' section.
-
 
 The script was written by Robert Jones (jones@craic.com) of Craic Computing LLC and is freely distributed under the terms of the MIT license.
 
