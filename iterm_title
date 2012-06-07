@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# iterm_title
+
+# This script set the Name for the current tab in iTerm2 (http://www.iterm2.com) on Mac OS X
+# It uses Applescript called from the UNIX command line
+#
+# Robert Jones  Craic Computing LLC  2012  jones@craic.com
+#
+# Freely distributed under the terms of the MIT license
+
+# iTerm2 (http://www.iterm2.com) by George Nachman is an excellent terminal emulator for Mac OS X that is highly 
+# configurable. I it prefer over the system Terminal application.
+
+# This script lets you set the title for the current session (tab) from the UNIX command line in that session
+
+# You run it like this:
+# $ iterm_title 'My title'
+# You can have multiple words and the quotes are optional
+
+# Note that the tab width does not expand to fit your text - about 25 characters is a reasonable maximum
+
+# This script could be easily modified to change session colors, etc from the command line - Take a look at the iTerm2 docs
+
+# To install, copy it to /usr/local/bin and 'chmod a+x iterm_title' to make it executable
+
+# By default iTerm will show the current foreground process, such as bash, in the tab title.
+# You can prevent this by going to Preferences -> Appearance and unchecking 'Show current job name' in the 'Window and Tab Titles' section
+
+# if no title is supplied then just exit
+if [ $# -eq 0 ]; then
+  exit 1	
+fi
+
+# osascript is a system application that runs Applescript from the Unix command line
+# Here I pass it the Applescript as a HERE document
+# The user-defined title is passed in as $* in quotes
+/usr/bin/osascript - "$*" <<- EOF
+
+on run argv
+	tell application "iTerm"
+	 	activate
+	 	set myterm to (current terminal)
+	 	tell myterm
+	 		set mysession to (current session)
+	 		tell mysession			
+	 			set name to (item 1 of argv)
+	 		end tell
+	 	end tell
+	end tell
+end run 
+
+EOF
